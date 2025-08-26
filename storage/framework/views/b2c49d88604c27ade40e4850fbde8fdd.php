@@ -1,0 +1,2 @@
+<img src="<?php echo e(asset('images/logo.png')); ?>" alt="Logo" class="img-fluid" style="max-height: 50px;">
+<?php /**PATH C:\Users\majim\OneDrive\Documents\dgapr-store\resources\views/components/application-logo.blade.php ENDPATH**/ ?>
