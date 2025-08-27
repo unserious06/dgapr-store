@@ -37,7 +37,8 @@
                     <a href="{{ route('products.show', $product->slug) }}" class="no-underline text-dark">
                         <div class="card shadow h-100">
                                 <div style="height: 300px; overflow: hidden;">
-                                    <img src="{{ asset(optional($product->images->first())->path ?? 'placeholder.jpg') }}"
+
+                                        <img src="{{ asset(optional($product->images->first())->path ?? 'placeholder.jpg') }}"
                                         class="card-img-top img-fluid object-fit-cover w-100 h-100"
                                         alt="{{ $product->title }}">
                                 </div>
