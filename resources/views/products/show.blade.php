@@ -6,7 +6,10 @@
                     <div class="carousel-inner">
                         @foreach ($product->images as $index => $image)
                             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                <img src="{{ asset($image->path) }}" class="d-block w-100" alt="">
+                                <a href="{{ asset($image->path) }}" data-lightbox="gallery">
+                                    <img src="{{ asset($image->path) }}" class="d-block w-100" 
+         style="max-height: 400px; object-fit: cover;"  alt="Zoomable">
+                                </a>
                             </div>
                         @endforeach
                     </div>

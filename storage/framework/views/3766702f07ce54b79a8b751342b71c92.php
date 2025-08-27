@@ -15,7 +15,10 @@
                     <div class="carousel-inner">
                         <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="carousel-item <?php echo e($index === 0 ? 'active' : ''); ?>">
-                                <img src="<?php echo e(asset($image->path)); ?>" class="d-block w-100" alt="">
+                                <a href="<?php echo e(asset($image->path)); ?>" data-lightbox="gallery">
+                                    <img src="<?php echo e(asset($image->path)); ?>" class="d-block w-100" 
+         style="max-height: 400px; object-fit: cover;"  alt="Zoomable">
+                                </a>
                             </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
