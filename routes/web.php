@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ReservationController as AdminReservationController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Superadmin\AdminUserController;
 
 
@@ -58,14 +59,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-/*Route::middleware(['role:admin'])->get('/test1', function () {
-    return 'Admin here!';
-});
-Route::middleware(['role:super_admin'])->get('/test2', function () {
-    return 'Super Admin here!';
-});*/
-
-// Superadmin routes
 
 Route::prefix('superadmin')
     ->name('superadmin.')
@@ -76,6 +69,11 @@ Route::prefix('superadmin')
             ->names('admin'); // route names: superadmin.admin.index, etc.
     });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/remove/{item}', [CartController::class, 'remove'])->name('cart.remove');
+});
 
 
 require __DIR__.'/auth.php';

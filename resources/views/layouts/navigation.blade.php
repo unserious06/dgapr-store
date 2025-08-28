@@ -77,6 +77,17 @@
                     </x-dropdown>
                 </div>
             
+            @else
+                {{-- Guest (not logged in) --}}
+                <div class="hidden sm:flex sm:items-center sm:ms-6 space-x-4">
+                    @if (Route::has('login'))
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                    @endif
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="text-sm text-gray-700 underline">Register</a>
+                    @endif
+                </div>    
             @endif
 
             <!-- Hamburger -->

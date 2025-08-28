@@ -65,8 +65,41 @@
                         <textarea name="message" id="message" class="form-control" rows="3"></textarea>
                     </div>
 
-                    <button class="btn btn-primary">Réserver</button>
+                    <button class="btn btn-primary mb-4">Réserver</button>
                 </form>
+
+                <form action="{{ route('cart.add', $product->id) }}" method="POST" class="d-flex align-items-center">
+                    @csrf
+
+                    <div class="input-group" style="width: 140px;">
+                        
+                        <button type="button" class="btn btn-outline-secondary" onclick="decreaseQty({{ $product->id }})">−</button>
+
+                        <input type="number" id="qty-{{ $product->id }}" name="quantity"
+                            class="form-control text-center" value="1" min="1">
+
+                        <button type="button" class="btn btn-outline-secondary" onclick="increaseQty({{ $product->id }})">+</button>
+                    </div>
+
+                    <button type="submit" class="btn btn-success ms-2">Add to Cart</button>
+                </form>
+
+                <script>
+                function increaseQty(id) {
+                    let input = document.getElementById('qty-' + id);
+                    input.value = parseInt(input.value) + 1;
+                }
+
+                function decreaseQty(id) {
+                    let input = document.getElementById('qty-' + id);
+                    if (parseInt(input.value) > 1) {
+                        input.value = parseInt(input.value) - 1;
+                    }
+                }
+                </script>
+
+
+
             </div>
         </div>
     </div>

@@ -190,6 +190,17 @@
 <?php endif; ?>
                 </div>
             
+            <?php else: ?>
+                
+                <div class="hidden sm:flex sm:items-center sm:ms-6 space-x-4">
+                    <?php if(Route::has('login')): ?>
+                        <a href="<?php echo e(route('login')); ?>" class="text-sm text-gray-700 underline">Login</a>
+                    <?php endif; ?>
+
+                    <?php if(Route::has('register')): ?>
+                        <a href="<?php echo e(route('register')); ?>" class="text-sm text-gray-700 underline">Register</a>
+                    <?php endif; ?>
+                </div>    
             <?php endif; ?>
 
             <!-- Hamburger -->
