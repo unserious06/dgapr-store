@@ -35,12 +35,30 @@
                     </div> 
               @endrole
 
-                
-                        
-                    
-                
 
             </div>
+            <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <a href="{{ route('cart.index') }}" class="text-gray-600 hover:text-gray-800 relative">
+                    
+                    <div class="shopping">
+                        <i class="bi bi-cart-fill" style="font-size: 1.5rem;"></i>
+                        <span class="quantity" style=" background: rgb(255, 255, 255);
+                                                        border-radius: 50%;
+                                                        border: 1px solid #000000;
+                                                        display: flex;
+                                                        justify-content: center;
+                                                        align-items: center;
+                                                        color: #000000;
+                                                        position: absolute;
+                                                        top: -5px;
+                                                        left: 80%;
+                                                        padding: 2px;
+                                                        min-width: 18px;
+                                                        height: 18px;
+                                                        font-size: 12px;;">0</span>
+                    </div>
+                </a>
+
 
             <!-- Settings Dropdown -->
             @if (Auth::check())

@@ -17,7 +17,8 @@
                             <div class="carousel-item <?php echo e($index === 0 ? 'active' : ''); ?>">
                                 <a href="<?php echo e(asset($image->path)); ?>" data-lightbox="gallery">
                                     <img src="<?php echo e(asset($image->path)); ?>" class="d-block w-100" 
-         style="max-height: 400px; object-fit: cover;"  alt="Zoomable">
+                                          style="max-height: 400px; object-fit: cover;"  alt="Zoomable">
+                                        
                                 </a>
                             </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

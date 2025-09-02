@@ -49,7 +49,7 @@
 
                 <!-- Checkout button 
                 <div class="text-end">
-                    <a href="<?php echo e(-- route('checkout.index')); ?>" class="btn btn-success">
+                    <a href="" class="btn btn-success">
                         Proceed to Checkout
                     </a>
                 </div>-->
