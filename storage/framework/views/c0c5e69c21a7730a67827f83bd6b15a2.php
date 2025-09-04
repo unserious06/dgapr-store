@@ -110,9 +110,9 @@
                                                         top: -5px;
                                                         left: 80%;
                                                         padding: 2px;
-                                                    min-width: 18px;
-                                                    height: 18px;
-                                                    font-size: 12px;;">0</span>
+                                                        min-width: 18px;
+                                                        height: 18px;
+                                                        font-size: 12px;">0</span>
                     </div>
                 </a>
 

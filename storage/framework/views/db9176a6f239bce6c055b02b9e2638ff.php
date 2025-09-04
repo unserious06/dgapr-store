@@ -60,6 +60,7 @@
                             </div>
                         </div>
                     </a>
+                    
                      <form action="<?php echo e(route('cart.add', $product->id)); ?>" method="POST" class="d-flex justify-content-center mt-2 ">
                     <?php echo csrf_field(); ?>
 

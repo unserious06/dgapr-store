@@ -50,6 +50,7 @@
                             </div>
                         </div>
                     </a>
+                    {{-- Add to Cart Form --}}
                      <form action="{{ route('cart.add', $product->id) }}" method="POST" class="d-flex justify-content-center mt-2 ">
                     @csrf
 

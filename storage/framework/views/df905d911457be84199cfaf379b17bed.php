@@ -14,6 +14,11 @@
          <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
         
          
+<?php echo \Livewire\Mechanisms\FrontendAssets\FrontendAssets::styles(); ?>
+
+
+<?php echo \Livewire\Mechanisms\FrontendAssets\FrontendAssets::scripts(); ?>
+
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
          <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
@@ -26,11 +31,11 @@
 
             <!-- Page Heading -->
             <?php if(isset($header)): ?>
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        <?php echo e($header); ?>
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <?php echo e($header); ?>
 
-                    </div>
+                </div>
                 </header>
             <?php endif; ?>
 
@@ -38,6 +43,7 @@
             <main>
                 <?php echo e($slot); ?>
 
+                
             </main>
         </div>
     </body>
