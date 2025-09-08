@@ -42,7 +42,7 @@
                     
                     <div class="shopping">
                         <i class="bi bi-cart-fill" style="font-size: 1.5rem;"></i>
-                        <span class="quantity" style=" background: rgb(255, 255, 255);
+                        <span id="cart-count" class="quantity" style=" background: rgb(255, 255, 255);
                                                         border-radius: 50%;
                                                         border: 1px solid #000000;
                                                         display: flex;
@@ -55,7 +55,9 @@
                                                         padding: 2px;
                                                         min-width: 18px;
                                                         height: 18px;
-                                                        font-size: 12px;">0</span>
+                                                        font-size: 12px;">{{ $cartCount ?? 0 }}</span>
+    
+
                     </div>
                 </a>
 

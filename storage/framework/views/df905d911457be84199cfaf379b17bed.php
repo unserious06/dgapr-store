@@ -46,6 +46,25 @@
                 
             </main>
         </div>
+
+
+        <script>
+    function updateCartCount() {
+        fetch("<?php echo e(route('cart.count')); ?>")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('cart-count').textContent = data.count;
+            })
+            .catch(error => console.error('Error fetching cart count:', error));
+    }
+
+    // Run once on page load
+    updateCartCount();
+
+    // Optionally refresh every few seconds (if other pages can add items)
+    // setInterval(updateCartCount, 5000);
+</script>
+
     </body>
 </html>
 <?php /**PATH C:\Users\majim\OneDrive\Documents\dgapr-store\resources\views/components/app.blade.php ENDPATH**/ ?>

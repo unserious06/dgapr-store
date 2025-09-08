@@ -15,6 +15,7 @@ class CartController extends Controller
         $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
         $items = $cart->items()->with('product')->get();
 
+        
         return view('cart.index', compact('items'));
     }
 
@@ -22,7 +23,7 @@ class CartController extends Controller
     {
         $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
 
-         $quantity = max(1, (int) $request->input('quantity', 1));
+        $quantity = max(1, (int) $request->input('quantity', 1));
 
         $item = $cart->items()->where('product_id', $product->id)->first();
 
@@ -35,7 +36,13 @@ class CartController extends Controller
             ]);
         }
 
-        return redirect()->route('cart.index')->with('success', 'Product added to cart');
+        //return redirect()->route('cart.index')->with('success', 'Product added to cart');
+        $count = $cart->items()->sum('quantity');
+        return response()->json([
+            'success' => true,
+            'message' => 'Product added to cart',
+            'count' => $count
+        ]);
     }
 
     public function remove(CartItem $item)
@@ -45,6 +52,24 @@ class CartController extends Controller
             $item->delete();
         }
 
-        return redirect()->route('cart.index')->with('success', 'Item removed from cart');
+        //return redirect()->route('cart.index')->with('success', 'Item removed from cart');
+        $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
+        $count = $cart->items()->sum('quantity');
+
+        return response()->json([
+        'success' => true,
+        'message' => 'Item removed from cart',
+        'count' => $count
+        ]);
+    
     }
+
+    public function count()
+    {
+        $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
+        $count = $cart->items()->sum('quantity');
+
+        return response()->json(['count' => $count]);
+    }
+
 }

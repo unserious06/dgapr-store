@@ -61,35 +61,56 @@
                         </div>
                     </a>
                     
-                     <form action="<?php echo e(route('cart.add', $product->id)); ?>" method="POST" class="d-flex justify-content-center mt-2 ">
-                    <?php echo csrf_field(); ?>
+                    <div class="d-flex align-items-center justify-content-center mt-2">
+                        <div class="input-group" style="width: 140px;">
+                            <button type="button" class="btn btn-outline-secondary" onclick="decreaseQty(<?php echo e($product->id); ?>)">−</button>
 
-                    <div class="input-group" style="width: 140px;">
-                        
-                        <button type="button" class="btn btn-outline-secondary" onclick="decreaseQty(<?php echo e($product->id); ?>)">−</button>
+                            <input type="number" id="qty-<?php echo e($product->id); ?>" class="form-control text-center" value="1" min="1">
 
-                        <input type="number" id="qty-<?php echo e($product->id); ?>" name="quantity"
-                            class="form-control text-center" value="1" min="1">
+                            <button type="button" class="btn btn-outline-secondary" onclick="increaseQty(<?php echo e($product->id); ?>)">+</button>
+                        </div>
 
-                        <button type="button" class="btn btn-outline-secondary" onclick="increaseQty(<?php echo e($product->id); ?>)">+</button>
+                        <button type="button" class="btn btn-primary ms-2" onclick="addToCart(<?php echo e($product->id); ?>)">Add to Cart</button>
                     </div>
 
-                    <button type="submit" class="btn btn-primary ms-2">Add to Cart</button>
-                </form>
-
                 <script>
-                function increaseQty(id) {
-                    let input = document.getElementById('qty-' + id);
-                    input.value = parseInt(input.value) + 1;
-                }
-
-                function decreaseQty(id) {
-                    let input = document.getElementById('qty-' + id);
-                    if (parseInt(input.value) > 1) {
-                        input.value = parseInt(input.value) - 1;
+                    function increaseQty(id) {
+                        let input = document.getElementById('qty-' + id);
+                        input.value = parseInt(input.value) + 1;
                     }
-                }
-                </script>
+
+                    function decreaseQty(id) {
+                        let input = document.getElementById('qty-' + id);
+                        if (parseInt(input.value) > 1) {
+                            input.value = parseInt(input.value) - 1;
+                        }
+                    }
+
+                    function addToCart(productId) {
+                        let qtyInput = document.getElementById('qty-' + productId);
+                        let quantity = parseInt(qtyInput.value);
+
+                        fetch(`/cart/add/${productId}`, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ quantity: quantity })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                document.getElementById('cart-count').textContent = data.count; // 🔥 update badge
+                                //alert(data.message);
+                            } else {
+                                alert("Something went wrong!");
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                    }
+                    </script>
+
 
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
