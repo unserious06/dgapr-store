@@ -22,7 +22,7 @@
                     </thead>
                     <tbody>
                         @foreach($items as $item)
-                            <tr id="cart-item-{{ $item->id }}">
+                            <tr id="cart-item-page-{{ $item->id }}">
                                 <td>{{ $item->product->title }}</td>
                                 <td class="text-center">{{ $item->quantity }}</td>
                                 <td class="text-end">
@@ -47,25 +47,5 @@
 </div>
 
 
-    <script>
-    function removeFromCart(itemId) {
-    fetch(`/cart/remove/${itemId}`, {
-        method: 'DELETE',
-        headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            document.getElementById('cart-count').textContent = data.count;
-            
-            // 🔥 remove the item row from the page without reload
-            let row = document.getElementById('cart-item-' + itemId);
-            if (row) row.remove();
-        }
-    })
-    .catch(error => console.error('Error:', error));
-}
-</script>
+    
 </x-app-layout>

@@ -78,6 +78,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
+Route::get('/cart/sidebar', [CartController::class, 'sidebar'])->name('cart.sidebar');
 
 
 

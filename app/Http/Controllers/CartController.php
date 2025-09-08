@@ -72,4 +72,23 @@ class CartController extends Controller
         return response()->json(['count' => $count]);
     }
 
+    public function sidebar()
+{
+    $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
+    $items = $cart->items()->with('product')->get();
+
+    return response()->json([
+        'items' => $items->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'title' => $item->product->title,
+                'price' => $item->product->price,
+                'quantity' => $item->quantity,
+                'image' => asset(optional($item->product->images->first())->path ?? 'placeholder.jpg'),
+            ];
+        })
+    ]);
+}
+
+
 }

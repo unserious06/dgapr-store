@@ -31,7 +31,7 @@
                     </thead>
                     <tbody>
                         <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <tr id="cart-item-<?php echo e($item->id); ?>">
+                            <tr id="cart-item-page-<?php echo e($item->id); ?>">
                                 <td><?php echo e($item->product->title); ?></td>
                                 <td class="text-center"><?php echo e($item->quantity); ?></td>
                                 <td class="text-end">
@@ -56,27 +56,7 @@
 </div>
 
 
-    <script>
-    function removeFromCart(itemId) {
-    fetch(`/cart/remove/${itemId}`, {
-        method: 'DELETE',
-        headers: {
-            'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            document.getElementById('cart-count').textContent = data.count;
-            
-            // 🔥 remove the item row from the page without reload
-            let row = document.getElementById('cart-item-' + itemId);
-            if (row) row.remove();
-        }
-    })
-    .catch(error => console.error('Error:', error));
-}
-</script>
+    
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
