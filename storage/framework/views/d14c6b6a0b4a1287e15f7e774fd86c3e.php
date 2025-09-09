@@ -44,14 +44,14 @@
                     </tbody>
                 </table>
 
-                <!-- Checkout button 
-                <div class="text-end">
-                    <a href="" class="btn btn-success">
+                 
+                
+            </div>
+        </div><div class="text-end">
+                    <a href="" class="btn btn-success mt-3">
                         Proceed to Checkout
                     </a>
-                </div>-->
-            </div>
-        </div>
+                </div>
     <?php endif; ?>
 </div>
 

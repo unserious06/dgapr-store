@@ -35,14 +35,14 @@
                     </tbody>
                 </table>
 
-                <!-- Checkout button 
-                <div class="text-end">
-                    <a href="{{-- route('checkout.index') --}}" class="btn btn-success">
+                 
+                
+            </div>
+        </div><div class="text-end">
+                    <a href="{{-- route('checkout.index') --}}" class="btn btn-success mt-3">
                         Proceed to Checkout
                     </a>
-                </div>-->
-            </div>
-        </div>
+                </div>
     @endif
 </div>
 
