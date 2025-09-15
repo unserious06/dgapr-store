@@ -78,7 +78,7 @@
 
                 
                 <div class="card p-3 mb-4 shadow-sm border-0">
-                    <form action="<?php echo e(route('products.reserve', $product->id)); ?>" method="POST">
+                    <form action="<?php echo e(route('orders.storeSingle', $product->id)); ?>" method="POST">
                         <?php echo csrf_field(); ?>
 
                         <div class="mb-3">
@@ -92,21 +92,21 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email (facultatif)</label>
+                            <label for="email" class="form-label">Email</label>
                             <input type="email" name="email" id="email" class="form-control">
                         </div>
 
                         <div class="mb-3">
-                            <label for="quantity" class="form-label">Quantité</label>
-                            <input type="number" name="quantity" id="quantity" class="form-control" min="1" required>
+                            <label for="shipping_address" class="form-label">Adresse de livraison</label>
+                            <textarea name="shipping_address" id="shipping_address" class="form-control" rows="2"></textarea>   
                         </div>
 
                         <div class="mb-3">
-                            <label for="message" class="form-label">Message (facultatif)</label>
-                            <textarea name="message" id="message" class="form-control" rows="3"></textarea>
+                            <label for="quantity" class="form-label">Quantité</label> 
+                            <input type="number" name="quantity" id="quantity" class="form-control" value="1" min="1" required>
                         </div>
 
-                        <button class="btn btn-primary w-100">Réserver</button>
+                        <button class="btn btn-primary w-100 mb-3">Réserver</button>
                     </form>
                 </div>
 

@@ -119,6 +119,7 @@
                                 let cartItemsDiv = document.getElementById("cart-items");
                                 cartItemsDiv.innerHTML = ""; // clear
                                 let totalPrice = 0;
+                                const cartIndexUrl = "{{ route('cart.index') }}";
 
                                 data.items.forEach(item => {
                                     totalPrice += (item.quantity) * (item.price);
@@ -146,9 +147,9 @@
                                             <span>Total:</span>
                                             <span>${totalPrice} MAD</span>
                                         </div>
-                                        <button class="w-full mt-3 bg-primary text-white py-2 rounded hover:bg-accent">
+                                        <a href="${cartIndexUrl}" class="btn btn-primary w-100 mt-3">
                                             Reserver tout
-                                        </button>
+                                        </a>
                                     </div>
                                 `;
                             });
