@@ -12,7 +12,7 @@ class RedirectIfAuthenticated
     {
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect('/admin'); // redirige vers /admin après connexion
+                return redirect('/home'); // redirige vers /admin après connexion
             }
         }
 

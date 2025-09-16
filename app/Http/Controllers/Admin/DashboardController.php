@@ -8,20 +8,21 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Reservation;
 use App\Models\Category;
+use App\Models\Order;
 
 class DashboardController extends Controller
 {
     public function index()
     {
         $totalProducts = Product::count();
-        $totalReservations = Reservation::count();
+        $totalOrders = Order::count();
         $totalCategories = Category::count();
 
-        $reservationsByStatus = Reservation::selectRaw('status, COUNT(*) as count')
+        $ordersByStatus = Order::selectRaw('status, COUNT(*) as count')
             ->groupBy('status')
             ->pluck('count', 'status');
 
-        return view('admin.dashboard', compact('totalProducts', 'totalReservations', 'totalCategories', 'reservationsByStatus'));
+        return view('admin.dashboard', compact('totalProducts', 'totalOrders', 'totalCategories', 'ordersByStatus'));
     }
 }
 

@@ -9,7 +9,10 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ReservationController as AdminReservationController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Superadmin\AdminUserController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 
 
 
@@ -47,9 +50,9 @@ Route::middleware(['auth' , 'role:admin|super_admin'])->prefix('admin')->name('a
         Route::delete('/images/{image}', [ProductImageController::class, 'destroy'])->name('images.destroy');
     });
 
-    // Réservations
+    /*Réservations
     Route::get('reservations', [AdminReservationController::class, 'index'])->name('reservations.index');
-    Route::patch('reservations/{reservation}/status', [AdminReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
+    Route::patch('reservations/{reservation}/status', [AdminReservationController::class, 'updateStatus'])->name('reservations.updateStatus'); */
 });
 
 Route::middleware('auth')->group(function () {
@@ -58,14 +61,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-/*Route::middleware(['role:admin'])->get('/test1', function () {
-    return 'Admin here!';
-});
-Route::middleware(['role:super_admin'])->get('/test2', function () {
-    return 'Super Admin here!';
-});*/
-
-// Superadmin routes
 
 Route::prefix('superadmin')
     ->name('superadmin.')
@@ -76,6 +71,37 @@ Route::prefix('superadmin')
             ->names('admin'); // route names: superadmin.admin.index, etc.
     });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
+    Route::delete('/cart/remove/{item}', [CartController::class, 'remove'])->name('cart.remove');
+});
+
+
+
+Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
+Route::get('/cart/sidebar', [CartController::class, 'sidebar'])->name('cart.sidebar');
+
+
+
+Route::middleware('auth')->group(function () {
+    // Cart checkout (modal form)
+    Route::post('/orders/store-from-cart', [OrderController::class, 'storeFromCart'])
+        ->name('orders.storeFromCart');
+
+    // single product order (from product page)
+     Route::post('/orders/{product}', [OrderController::class, 'storeSingle'])
+        ->name('orders.storeSingle');
+
+    Route::get('/orders/{order}/confirmation', [OrderController::class, 'confirmation'])
+        ->name('orders.confirmation');
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
+    Route::patch('orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
+});
 
 
 require __DIR__.'/auth.php';
