@@ -122,8 +122,11 @@
                             .then(data => {
                                 let cartItemsDiv = document.getElementById("cart-items");
                                 cartItemsDiv.innerHTML = ""; // clear
+                                let totalPrice = 0;
+                                const cartIndexUrl = "<?php echo e(route('cart.index')); ?>";
 
                                 data.items.forEach(item => {
+                                    totalPrice += (item.quantity) * (item.price);
                                     cartItemsDiv.innerHTML += `
                                     <div>
                                     <div id="cart-item-sidebar-${item.id}" class="border p-2 rounded">
@@ -136,11 +139,23 @@
                                             <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700">&times;</button>
                                         </div>
                                         <div class="mt-2 text-right font-semibold">
-                                            Total: ${(item.quantity) * (item.price)} MAD
+                                            ${(item.quantity) * (item.price)} MAD
                                         </div>
                                     </div>
                                     `;
                                 });
+
+                                cartItemsDiv.innerHTML += `
+                                    <div class="border-t pt-3 mt-3">
+                                        <div class="flex justify-between font-bold text-lg">
+                                            <span>Total:</span>
+                                            <span>${totalPrice} MAD</span>
+                                        </div>
+                                        <a href="${cartIndexUrl}" class="btn btn-primary w-100 mt-3">
+                                            Reserver tout
+                                        </a>
+                                    </div>
+                                `;
                             });
                     }
 

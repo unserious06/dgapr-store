@@ -28,10 +28,10 @@
             <div class="col-md-4">
                 <div class="card text-white bg-success mb-3">
                     <div class="card-body">
-                        <a href="<?php echo e(route('admin.reservations.index')); ?>" class="col-md-4 no-underline">
+                        <a href="<?php echo e(route('admin.orders.index')); ?>" class="col-md-4 no-underline">
                             <h5 class="card-title" style="color: white;">Réservations</h5>
                         </a>
-                        <p class="card-text display-6"><?php echo e($totalReservations); ?></p>
+                        <p class="card-text display-6"><?php echo e($totalOrders); ?></p>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                     <div class="card mb-3 border">
                         <div class="card-body text-center">
                             <h6><?php echo e($label); ?></h6>
-                            <p class="display-6"><?php echo e($reservationsByStatus[$status] ?? 0); ?></p>
+                            <p class="display-6"><?php echo e($ordersByStatus[$status] ?? 0); ?></p>
                         </div>
                     </div>
                 </div>

@@ -19,10 +19,10 @@
             <div class="col-md-4">
                 <div class="card text-white bg-success mb-3">
                     <div class="card-body">
-                        <a href="{{ route('admin.reservations.index') }}" class="col-md-4 no-underline">
+                        <a href="{{ route('admin.orders.index') }}" class="col-md-4 no-underline">
                             <h5 class="card-title" style="color: white;">Réservations</h5>
                         </a>
-                        <p class="card-text display-6">{{ $totalReservations }}</p>
+                        <p class="card-text display-6">{{ $totalOrders }}</p>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     <div class="card mb-3 border">
                         <div class="card-body text-center">
                             <h6>{{ $label }}</h6>
-                            <p class="display-6">{{ $reservationsByStatus[$status] ?? 0 }}</p>
+                            <p class="display-6">{{ $ordersByStatus[$status] ?? 0 }}</p>
                         </div>
                     </div>
                 </div>

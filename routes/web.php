@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Superadmin\AdminUserController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 
 
 
@@ -48,9 +50,9 @@ Route::middleware(['auth' , 'role:admin|super_admin'])->prefix('admin')->name('a
         Route::delete('/images/{image}', [ProductImageController::class, 'destroy'])->name('images.destroy');
     });
 
-    // Réservations
+    /*Réservations
     Route::get('reservations', [AdminReservationController::class, 'index'])->name('reservations.index');
-    Route::patch('reservations/{reservation}/status', [AdminReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
+    Route::patch('reservations/{reservation}/status', [AdminReservationController::class, 'updateStatus'])->name('reservations.updateStatus'); */
 });
 
 Route::middleware('auth')->group(function () {
@@ -80,6 +82,26 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
 Route::get('/cart/sidebar', [CartController::class, 'sidebar'])->name('cart.sidebar');
 
+
+
+Route::middleware('auth')->group(function () {
+    // Cart checkout (modal form)
+    Route::post('/orders/store-from-cart', [OrderController::class, 'storeFromCart'])
+        ->name('orders.storeFromCart');
+
+    // single product order (from product page)
+     Route::post('/orders/{product}', [OrderController::class, 'storeSingle'])
+        ->name('orders.storeSingle');
+
+    Route::get('/orders/{order}/confirmation', [OrderController::class, 'confirmation'])
+        ->name('orders.confirmation');
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
+    Route::patch('orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
+});
 
 
 require __DIR__.'/auth.php';
