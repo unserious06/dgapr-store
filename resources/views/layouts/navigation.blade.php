@@ -55,7 +55,7 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile.edit')">Profile</x-dropdown-link>
+                            <x-dropdown-link :href="route('profile.edit')">Profil</x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('logout')"
@@ -68,8 +68,8 @@
                 @else
                     <!-- Guest -->
                     <div class="hidden sm:flex items-center space-x-4">
-                        <a href="{{ route('login') }}" class="text-sm font-medium text-gray-600 hover:text-indigo-600">Login</a>
-                        <a href="{{ route('register') }}" class="px-3 py-1 rounded-md bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700">Register</a>
+                        <a href="{{ route('login') }}" class="text-sm font-medium text-gray-600 hover:text-indigo-600">Se connecter</a>
+                        <a href="{{ route('register') }}" class="px-3 py-1 rounded-md bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700">S'inscrire</a>
                     </div>
                 @endif
 
@@ -95,7 +95,7 @@
     <div :class="{'block': open, 'hidden': !open}" class="sm:hidden bg-white border-t">
         <div class="px-4 py-3 space-y-2">
             @hasanyrole('admin|super_admin')
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">Dashboard</x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">Tableau de bord</x-responsive-nav-link>
             @endhasanyrole
             @role('super_admin')
                 <x-responsive-nav-link :href="route('superadmin.admin.index')" :active="request()->routeIs('superadmin.admin.index')">Admin Manager</x-responsive-nav-link>
@@ -110,14 +110,14 @@
                     @csrf
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault(); this.closest('form').submit();">
-                        Log Out
+                        Se déconnecter
                     </x-responsive-nav-link>
                 </form>
             </div>
         @else
             <div class="border-t px-4 py-3 space-y-2">
-                <a href="{{ route('login') }}" class="block text-sm font-medium text-gray-600 hover:text-indigo-600">Login</a>
-                <a href="{{ route('register') }}" class="block text-sm font-medium text-indigo-600">Register</a>
+                <a href="{{ route('login') }}" class="block text-sm font-medium text-gray-600 hover:text-indigo-600">Se connecter</a>
+                <a href="{{ route('register') }}" class="block text-sm font-medium text-indigo-600">S'inscrire</a>
             </div>
         @endif
     </div>

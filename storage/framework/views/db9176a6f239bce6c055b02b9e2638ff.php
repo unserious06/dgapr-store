@@ -17,7 +17,7 @@
                 <div class="col-md-6">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" 
-                               placeholder="Search products..." value="<?php echo e(request('search')); ?>">
+                               placeholder="Rechercher produits..." value="<?php echo e(request('search')); ?>">
                         <button class="btn btn-primary" type="submit">
                             <i class="bi bi-search"></i>
                         </button>
@@ -27,7 +27,7 @@
                 
                 <div class="col-md-4">
                     <select name="category" class="form-select" onchange="this.form.submit()">
-                        <option value="">All Categories</option>
+                        <option value="">Toutes les categories</option>
                         <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($category->id); ?>" 
                                 <?php echo e(request('category') == $category->id ? 'selected' : ''); ?>>
@@ -71,7 +71,7 @@
                                     <button type="button" class="btn btn-outline-secondary" onclick="increaseQty(<?php echo e($product->id); ?>)">+</button>
                                 </div>
                                 <button type="button" class="btn btn-primary ms-2" onclick="addToCart(<?php echo e($product->id); ?>)">
-                                    Add to Cart
+                                    Au panier
                                 </button>
                             </div>
                         <?php endif; ?>

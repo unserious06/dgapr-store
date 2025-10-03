@@ -129,7 +129,7 @@
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('profile.edit'))]); ?>Profile <?php echo $__env->renderComponent(); ?>
+<?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('profile.edit'))]); ?>Profil <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal68cb1971a2b92c9735f83359058f7108)): ?>
 <?php $attributes = $__attributesOriginal68cb1971a2b92c9735f83359058f7108; ?>
@@ -177,8 +177,8 @@
                 <?php else: ?>
                     <!-- Guest -->
                     <div class="hidden sm:flex items-center space-x-4">
-                        <a href="<?php echo e(route('login')); ?>" class="text-sm font-medium text-gray-600 hover:text-indigo-600">Login</a>
-                        <a href="<?php echo e(route('register')); ?>" class="px-3 py-1 rounded-md bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700">Register</a>
+                        <a href="<?php echo e(route('login')); ?>" class="text-sm font-medium text-gray-600 hover:text-indigo-600">Se connecter</a>
+                        <a href="<?php echo e(route('register')); ?>" class="px-3 py-1 rounded-md bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700">S'inscrire</a>
                     </div>
                 <?php endif; ?>
 
@@ -213,7 +213,7 @@
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('dashboard')),'active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('dashboard'))]); ?>Dashboard <?php echo $__env->renderComponent(); ?>
+<?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('dashboard')),'active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('dashboard'))]); ?>Tableau de bord <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
 <?php $attributes = $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
@@ -263,7 +263,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('logout')),'onclick' => 'event.preventDefault(); this.closest(\'form\').submit();']); ?>
-                        Log Out
+                        Se déconnecter
                      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
@@ -278,8 +278,8 @@
             </div>
         <?php else: ?>
             <div class="border-t px-4 py-3 space-y-2">
-                <a href="<?php echo e(route('login')); ?>" class="block text-sm font-medium text-gray-600 hover:text-indigo-600">Login</a>
-                <a href="<?php echo e(route('register')); ?>" class="block text-sm font-medium text-indigo-600">Register</a>
+                <a href="<?php echo e(route('login')); ?>" class="block text-sm font-medium text-gray-600 hover:text-indigo-600">Se connecter</a>
+                <a href="<?php echo e(route('register')); ?>" class="block text-sm font-medium text-indigo-600">S'inscrire</a>
             </div>
         <?php endif; ?>
     </div>

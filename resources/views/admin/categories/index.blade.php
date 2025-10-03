@@ -6,7 +6,7 @@
     <div class="container py-4">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('admin.categories.create') }}" class="btn btn-primary mb-3">+ Add Category</a>
+                <a href="{{ route('admin.categories.create') }}" class="btn btn-primary mb-3">+ Ajouter une categorie</a>
             </div>
         </div>
 
@@ -19,11 +19,11 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <span>{{ $category->name }}</span>
                     <div>
-                        <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-sm btn-secondary">Edit</a>
+                        <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-sm btn-secondary">Modifier</a>
                         <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" style="display:inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this category?')">Delete</button>
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this category?')">Supprimer</button>
                         </form>
                     </div>
                 </li>
@@ -35,29 +35,4 @@
     </div>
 </x-app-layout> 
 
-    {{--@section('content')
-        <h1>Categories</h1>
-
-        <a href="{{ route('admin.categories.create') }}">+ Add Category</a>
-
-        @if (session('success'))
-            <div>{{ session('success') }}</div>
-        @endif
-
-        <ul>
-            @foreach ($categories as $category)
-                <li>
-                    {{ $category->name }}
-
-                    <a href="{{ route('admin.categories.edit', $category) }}">Edit</a>
-
-                    <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" style="display:inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" onclick="return confirm('Delete this category?')">Delete</button>
-                    </form>
-                </li>
-            @endforeach
-        </ul>
-    @endsection
-  --}}
+ 

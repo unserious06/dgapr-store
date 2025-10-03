@@ -2,7 +2,7 @@
     <div class="container py-4">
 
         <div class="row g-4">
-            {{-- Left: Product Images --}}
+            {{-- Left --}}
             <div class="col-md-6">
 
                 <h2 class="fw-bold">{{ $product->title }}</h2>
@@ -38,17 +38,17 @@
                 </div>
             </div>
 
-            {{-- Right: Product Info & Actions --}}
+            {{-- Right --}}
             <div class="col-md-6 d-flex flex-column justify-content-start">
                 
 
-                {{-- Success / Error Messages --}}
+                {{-- messages --}}
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
                 <x-error />
 
-                {{-- Reservation Form --}}
+                {{--Form --}}
                 <div class="card p-3 mb-4 shadow-sm border-0">
                     <form action="{{ route('orders.storeSingle', $product->id) }}" method="POST">
                         @csrf
@@ -91,7 +91,7 @@
                             <button type="button" class="btn btn-outline-secondary" onclick="increaseQty({{ $product->id }})">+</button>
                         </div>
 
-                        <button type="submit" class="btn btn-primary ms-3 flex-grow-1" onclick="addToCart({{ $product->id }})">Add to Cart</button>
+                        <button type="submit" class="btn btn-primary ms-3 flex-grow-1" onclick="addToCart({{ $product->id }})">Ajouter au panier</button>
                     
                 </div>
 

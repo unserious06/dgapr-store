@@ -9,33 +9,16 @@
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
     <div class="container py-4">
-
-        <div class="row g-4">
-            
+        <div class="row">
             <div class="col-md-6">
-
-                <h2 class="fw-bold"><?php echo e($product->title); ?></h2>
-                <p class="text-primary fw-bold fs-4"><?php echo e($product->price); ?> MAD</p>
-
-                <h6 class="mt-3">Description:</h6>
-                <p><?php echo e($product->description); ?></p>
-
-                <hr class="my-3">
-
                 <div id="carouselImages" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner rounded shadow-sm">
+                    <div class="carousel-inner">
                         <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="carousel-item <?php echo e($index === 0 ? 'active' : ''); ?>">
-                                <a href="<?php echo e(asset($image->path)); ?>" data-lightbox="gallery">
-                                    <img src="<?php echo e(asset($image->path)); ?>" 
-                                         class="d-block w-100"
-                                         style="max-height: 400px; object-fit: cover;"  
-                                         alt="Zoomable">
-                                </a>
+                                <img src="<?php echo e(asset($image->path)); ?>" class="d-block w-100" alt="">
                             </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
-
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
@@ -47,14 +30,18 @@
                 </div>
             </div>
 
-            
-            <div class="col-md-6 d-flex flex-column justify-content-start">
-                
+            <div class="col-md-6">
+                <h2><?php echo e($product->title); ?></h2>
+                <p class="text-primary fw-bold"><?php echo e($product->price); ?> MAD</p>
+                <h6>Description :</h6>
+                <p><?php echo e($product->description); ?></p>
 
-                
+                <div class="border"></div>
+            
                 <?php if(session('success')): ?>
                     <div class="alert alert-success"><?php echo e(session('success')); ?></div>
                 <?php endif; ?>
+
                 <?php if (isset($component)) { $__componentOriginal26e98e8e5cc4164d9d54ab94efc26e46 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal26e98e8e5cc4164d9d54ab94efc26e46 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.error','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -75,55 +62,36 @@
 <?php $component = $__componentOriginal26e98e8e5cc4164d9d54ab94efc26e46; ?>
 <?php unset($__componentOriginal26e98e8e5cc4164d9d54ab94efc26e46); ?>
 <?php endif; ?>
+                <form action="<?php echo e(route('products.reserve', $product->id)); ?>" method="POST" class="mt-4">
+                    <?php echo csrf_field(); ?>
 
-                
-                <div class="card p-3 mb-4 shadow-sm border-0">
-                    <form action="<?php echo e(route('orders.storeSingle', $product->id)); ?>" method="POST">
-                        <?php echo csrf_field(); ?>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nom</label>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nom</label>
-                            <input type="text" name="name" id="name" class="form-control" required>
-                        </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Téléphone</label>
+                        <input type="text" name="phone" id="phone" class="form-control" required>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Téléphone</label>
-                            <input type="text" name="phone" id="phone" class="form-control" required>
-                        </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email (facultatif)</label>
+                        <input type="email" name="email" id="email" class="form-control">
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" id="email" class="form-control">
-                        </div>
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Quantité</label>
+                        <input type="number" name="quantity" id="quantity" class="form-control" min="1" required>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="shipping_address" class="form-label">Adresse de livraison</label>
-                            <textarea name="shipping_address" id="shipping_address" class="form-control" rows="2"></textarea>   
-                        </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message (facultatif)</label>
+                        <textarea name="message" id="message" class="form-control" rows="3"></textarea>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="quantity" class="form-label">Quantité</label> 
-                            <input type="number" name="quantity" id="quantity" class="form-control" value="1" min="1" required>
-                        </div>
-
-                        <button class="btn btn-primary w-100 mb-3">Réserver</button>
-                    </form>
-                </div>
-
-                
-                <div class="d-flex align-items-center mb-4">
-                    
-                        <div class="input-group" style="width: 140px;">
-                            <button type="button" class="btn btn-outline-secondary" onclick="decreaseQty(<?php echo e($product->id); ?>)">−</button>
-                            <input type="number" id="qty-<?php echo e($product->id); ?>" name="quantity" class="form-control text-center" value="1" min="1">
-                            <button type="button" class="btn btn-outline-secondary" onclick="increaseQty(<?php echo e($product->id); ?>)">+</button>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary ms-3 flex-grow-1" onclick="addToCart(<?php echo e($product->id); ?>)">Ajouter au panier</button>
-                    
-                </div>
-
-               
+                    <button class="btn btn-primary">Réserver</button>
+                </form>
             </div>
         </div>
     </div>
@@ -136,5 +104,4 @@
 <?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
 <?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
 <?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
-<?php endif; ?>
-<?php /**PATH C:\Users\majim\OneDrive\Documents\dgapr-store\resources\views/products/show.blade.php ENDPATH**/ ?>
+<?php endif; ?><?php /**PATH C:\Users\majim\OneDrive\Bureau\dgapr-store\resources\views/products/show.blade.php ENDPATH**/ ?>

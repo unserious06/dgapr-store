@@ -12,7 +12,7 @@
    
 
 <div class="container my-4">
-    <h2 class="mb-4">Your Cart</h2>
+    <h2 class="mb-4">Votre panier</h2>
 
 <?php if (isset($component)) { $__componentOriginal5b09c79149dfb771c232996af5f9dae4 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5b09c79149dfb771c232996af5f9dae4 = $attributes; } ?>
@@ -37,7 +37,7 @@
 
     <?php if($items->isEmpty()): ?>
         <div class="alert alert-info">
-            Your cart is empty.
+            Votre panier est vide.
         </div>
     <?php else: ?>
         <div class="card shadow-sm">
@@ -45,9 +45,9 @@
                 <table class="table align-middle">
                     <thead class="table-light">
                         <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th class="text-center">Quantity</th>
+                            <th>Produit</th>
+                            <th>Prix</th>
+                            <th class="text-center">Quantité</th>
                             <th class="text-end">Actions</th>
                         </tr>
                     </thead>
@@ -59,7 +59,7 @@
                                 <td class="text-center"><?php echo e($item->quantity); ?></td>
                                 <td class="text-end">
                                     <button type="button" class="btn btn-danger" onclick="removeFromCart(<?php echo e($item->id); ?>)">
-                                        Remove
+                                        Supprimer
                                     </button>
                                 </td>
                             </tr>

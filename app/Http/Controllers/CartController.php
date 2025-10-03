@@ -36,7 +36,6 @@ class CartController extends Controller
             ]);
         }
 
-        //return redirect()->route('cart.index')->with('success', 'Product added to cart');
         $count = $cart->items()->sum('quantity');
         return response()->json([
             'success' => true,
@@ -47,12 +46,10 @@ class CartController extends Controller
 
     public function remove(CartItem $item)
     {
-        // Ensure the item belongs to the logged-in user's cart
         if ($item->cart->user_id === Auth::id()) {
             $item->delete();
         }
 
-        //return redirect()->route('cart.index')->with('success', 'Item removed from cart');
         $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
         $count = $cart->items()->sum('quantity');
 

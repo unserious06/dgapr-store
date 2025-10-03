@@ -85,11 +85,11 @@ Route::get('/cart/sidebar', [CartController::class, 'sidebar'])->name('cart.side
 
 
 Route::middleware('auth')->group(function () {
-    // Cart checkout (modal form)
+    // multiple products order (from cart)
     Route::post('/orders/store-from-cart', [OrderController::class, 'storeFromCart'])
         ->name('orders.storeFromCart');
 
-    // single product order (from product page)
+    //single product order (from product page)
      Route::post('/orders/{product}', [OrderController::class, 'storeSingle'])
         ->name('orders.storeSingle');
 

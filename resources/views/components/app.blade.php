@@ -15,8 +15,7 @@
         
          
 @livewireStyles
-
-@livewireScripts
+@livewireScripts 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
          <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
@@ -27,11 +26,11 @@
 <!-- Cart Sidebar -->
 <div id="cart-sidebar" class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
     <div class="p-4 flex justify-between items-center border-b">
-        <h2 class="text-lg font-bold">My Cart</h2>
+        <h2 class="text-lg font-bold">Mon Panier</h2>
         <button onclick="closeCartSidebar()" class="text-gray-600 hover:text-black">&times;</button>
     </div>
     <div id="cart-items" class="p-4 space-y-2 overflow-y-auto h-[calc(100%-4rem)]">
-        <!-- Cart items will be injected here -->
+        <!-- Cart items vont etre insere ici -->
     </div>
 </div>
 

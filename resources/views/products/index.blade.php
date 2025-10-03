@@ -8,7 +8,7 @@
                 <div class="col-md-6">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" 
-                               placeholder="Search products..." value="{{ request('search') }}">
+                               placeholder="Rechercher produits..." value="{{ request('search') }}">
                         <button class="btn btn-primary" type="submit">
                             <i class="bi bi-search"></i>
                         </button>
@@ -18,7 +18,7 @@
                 {{-- Category filter --}}
                 <div class="col-md-4">
                     <select name="category" class="form-select" onchange="this.form.submit()">
-                        <option value="">All Categories</option>
+                        <option value="">Toutes les categories</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}" 
                                 {{ request('category') == $category->id ? 'selected' : '' }}>
@@ -61,7 +61,7 @@
                                     <button type="button" class="btn btn-outline-secondary" onclick="increaseQty({{ $product->id }})">+</button>
                                 </div>
                                 <button type="button" class="btn btn-primary ms-2" onclick="addToCart({{ $product->id }})">
-                                    Add to Cart
+                                    Au panier
                                 </button>
                             </div>
                         @endauth

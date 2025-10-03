@@ -14,7 +14,7 @@
         @method('PUT')
 
         <div class="mb-3">
-            <label>Name</label>
+            <label>Nom</label>
             <input type="text" name="name" class="form-control" value="{{ $admin->name }}" required>
         </div>
 
@@ -24,16 +24,16 @@
         </div>
 
         <div class="mb-3">
-            <label>Password (leave blank to keep current)</label>
+            <label>Mot de passe (laisser vide pour maintenir le present mdp)</label>
             <input type="password" name="password" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label>Confirm Password</label>
+            <label>Confirmer le mot de passe</label>
             <input type="password" name="password_confirmation" class="form-control">
         </div>
 
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary">Mettre a jour</button>
     </form>
 </div>
 

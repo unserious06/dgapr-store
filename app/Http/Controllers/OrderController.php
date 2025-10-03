@@ -13,7 +13,6 @@ class OrderController extends Controller
 
 public function storeFromCart(Request $request)
 {
-    // 1️⃣ Validate the request
     $validated = $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|email',
@@ -21,7 +20,6 @@ public function storeFromCart(Request $request)
         'shipping_address' => 'required|string|max:1000',
     ]);
 
-    // 2️⃣ Get the user's cart with items
     $cart = Cart::with('items.product')
                 ->where('user_id', Auth::id())
                 ->firstOrFail();
@@ -30,10 +28,8 @@ public function storeFromCart(Request $request)
         return back()->with('error', 'Votre panier est vide.');
     }
 
-    // 3️⃣ Define $order outside the transaction
     $order = null;
 
-    // 4️⃣ Create the order and items inside a transaction
     DB::transaction(function () use ($validated, $cart, &$order) {
         $order = Order::create([
             'user_id' => Auth::id(),
@@ -60,17 +56,14 @@ public function storeFromCart(Request $request)
             ]);
         }
 
-        // Update order total
         $order->update(['total' => $total]);
 
-        // Clear cart
         $cart->items()->delete();
         $cart->delete();
     });
 
-    // 5️⃣ Redirect to the shared confirmation page
     return redirect()
-        ->route('orders.confirmation', $order) // ✅ now works perfectly
+        ->route('orders.confirmation', $order) 
         ->with('success', 'Votre commande a bien été enregistrée.');
 }
 
@@ -112,9 +105,6 @@ public function storeSingle(Request $request, int $productId)
 
  public function confirmation(Order $order)
     {
-
-        
-       
         if (auth()->id() !== $order->user_id && !auth()->user()->hasRole('admin|super_admin')) {
             abort(403, 'You are not allowed to view this order.');
         }

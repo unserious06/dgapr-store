@@ -39,10 +39,8 @@ class AdminUserController extends Controller
         'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Hash the password before saving
         $data['password'] = bcrypt($data['password']);
 
-        // Create the new admin
         $admin = User::create($data);
 
         $admin->assignRole('admin');

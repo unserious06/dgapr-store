@@ -14,7 +14,7 @@
         @csrf
 
         <div class="mb-3">
-            <label>Name</label>
+            <label>Nom</label>
             <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
             @error('name') <span class="text-danger">{{ $message }}</span> @enderror
         </div>
@@ -26,17 +26,17 @@
         </div>
 
         <div class="mb-3">
-            <label>Password</label>
+            <label>Mot de passe</label>
             <input type="password" name="password" class="form-control" required>
             @error('password') <span class="text-danger">{{ $message }}</span> @enderror
         </div>
 
         <div class="mb-3">
-            <label>Confirm Password</label>
+            <label>Confirmer mot de passe</label>
             <input type="password" name="password_confirmation" class="form-control" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Create Admin</button>
+        <button type="submit" class="btn btn-primary">Creer Admin</button>
     </form>
 </div>
 

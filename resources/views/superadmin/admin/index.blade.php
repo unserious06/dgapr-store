@@ -9,12 +9,12 @@
     </x-slot>
 
     <x-flash-messages />
-    <a href="{{ route('superadmin.admin.create') }}" class="btn btn-primary mb-3">Add Admin</a>
+    <a href="{{ route('superadmin.admin.create') }}" class="btn btn-primary mb-3">Ajouter Admin</a>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th><th>Email</th><th>Actions</th>
+                <th>Nom</th><th>Email</th><th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,11 +23,11 @@
                     <td>{{ $admin->name }}</td>
                     <td>{{ $admin->email }}</td>
                     <td>
-                        <a href="{{ route('superadmin.admin.edit', $admin) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('superadmin.admin.edit', $admin) }}" class="btn btn-warning">Modifier</a>
                         <form action="{{ route('superadmin.admin.destroy', $admin) }}" method="POST" style="display:inline;">
                             @csrf @method('DELETE')
                             <button type="submit" class="btn btn-danger"
-                                onclick="return confirm('Are you sure?')">Delete</button>
+                                onclick="return confirm('Are you sure?')">Supprimer</button>
                         </form>
                     </td>
                 </tr>

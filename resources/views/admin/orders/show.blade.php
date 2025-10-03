@@ -7,7 +7,7 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <!-- Customer Info -->
+
         <div class="card mb-4">
             <div class="card-header">Informations client</div>
             <div class="card-body">
@@ -15,11 +15,10 @@
                 <p><strong>Téléphone :</strong> {{ $order->phone }}</p>
                 <p><strong>Email :</strong> {{ $order->email ?? '-' }}</p>
                 <p><strong>Adresse :</strong> {{ $order->shipping_address ?? '-' }}</p>
-               {{-- <p><strong>Message :</strong> {{ $order->message ?? '-' }}</p>--}}
             </div>
         </div>
 
-        <!-- Order Items -->
+
         <div class="card mb-4">
             <div class="card-header">Produits</div>
             <div class="card-body">
@@ -46,7 +45,7 @@
             </div>
         </div>
 
-        <!-- Summary -->
+
         <div class="card mb-4">
             <div class="card-body d-flex justify-content-between">
                 <span><strong>Date :</strong> {{ $order->created_at->format('d/m/Y H:i') }}</span>
@@ -54,7 +53,7 @@
             </div>
         </div>
 
-        <!-- Status update -->
+
         <div class="card">
             <div class="card-header">Statut de la commande</div>
             <div class="card-body">
@@ -72,7 +71,7 @@
             </div>
         </div>
 
-        <!-- Back button -->
+
         <div class="mt-3">
             <a href="{{ route('admin.orders.index') }}" class="btn btn-secondary">← Retour aux commandes</a>
         </div>
